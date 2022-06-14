@@ -50,7 +50,8 @@
                           color="instructor_id"
                           mode="month">
                     <field name="name"/>
-                    <field name="instructor_id" filters="1" widget="many2many_avatar_user"/>
+                    <field name="instructor_id" filters='1' widget='many2many_avatar_user'/>
+                    <!--<field name="instructor_id" filters='1' avatar_field='avatar_128'/>-->
                  </calendar>
             </field>
         </record>
