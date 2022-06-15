@@ -29,6 +29,17 @@ class Session(models.Model):
                           inverse='_inverse_end_date',
                           store=True)
     
+    state = fields.Selection(string='States',
+                            selection=[('draft', 'Draft'),
+                                       ('open', 'In Progress'),
+                                       ('done', 'Done'),
+                                       ('canceled', 'Canceled')],
+                             default='draft',
+                             required=True)
+                                      
+    total_price = fields.Float(string='Total Price',
+                              related='course_id.total_price')
+    
     @api.depends('start_date','duration')
     def _compute_end_date(self):
         for record in self:
@@ -37,3 +48,10 @@ class Session(models.Model):
             else:
                 duration = timedelta(days=record.duration)
                 record.end_date = record.start_date + duration
+                
+    def _inverse_end_date(self):
+        for record in self:
+            if record.start_date and record.end_date:
+                record.duration = (record.end_date - record.start_date).days + 1
+            else:
+                continue
