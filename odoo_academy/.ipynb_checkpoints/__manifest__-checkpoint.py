@@ -20,7 +20,7 @@
     
     'version': '0.1',
     
-    'depends': ['sale_management'],
+    'depends': ['sale_management','website'],
     
     'data': [
         'security/academy_security.xml',
@@ -31,6 +31,8 @@
         'views/sale_views_inherit.xml',
         'views/product_views_inherit.xml',
         'wizard/sale_wizard_view.xml',
+        'reports/session_report_templates.xml',
+        'views/academy_web_templates.xml',
     ],
     
     'demo': [
